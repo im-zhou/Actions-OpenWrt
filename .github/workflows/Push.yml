@@ -21,7 +21,7 @@ jobs:
       uses: appleboy/telegram-action@master
       with:
         # 將剛剛拿到的參數帶入，讓流程能夠正確將訊息發到指定的聊天室
-        to: 1740724359
+        to: -1001872288921
         token: 7088187094:AAFtSYKr8gMnt7e1kCRUHxGfvLOMvtYt0cg
         # 設定要發出的訊息格式，以下是參考原始 repo 後稍微改寫的設定
         # github.actor: 觸發 event 的使用者名稱
