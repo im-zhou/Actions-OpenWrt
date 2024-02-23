@@ -1,5 +1,5 @@
 # 幫這個 action 取個名字，會在 action 頁面的左側顯示
-#name: Telegram Notification Push
+name: Telegram Notification Push
 
 # 要在什麼時候觸發，實測只設定 push 沒有限定更細的 type 或條件時，
 # 新增 tag、設定 release 等活動都會觸發
