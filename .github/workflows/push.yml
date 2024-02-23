@@ -4,8 +4,7 @@ name: Telegram Notification Push
 # 要在什麼時候觸發，實測只設定 push 沒有限定更細的 type 或條件時，
 # 新增 tag、設定 release 等活動都會觸發
 on:
-  release:  
-    types: [published]  # 仅当发布类型为published时触发
+  release
 
 # 設定 job 的內容
 jobs:
