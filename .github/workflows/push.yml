@@ -4,7 +4,8 @@ name: Telegram Notification Push
 # 要在什麼時候觸發，實測只設定 push 沒有限定更細的 type 或條件時，
 # 新增 tag、設定 release 等活動都會觸發
 on:
-  push
+  release:  
+    types: [published]  # 仅当发布类型为published时触发
 
 # 設定 job 的內容
 jobs:
@@ -29,8 +30,7 @@ jobs:
         # github.event.commits[0].message: commit message
         # github.repository: repository 的名稱
         message: |  
-           ${{ github.actor }} created a new commit:  
-           Commit message: ${{ github.event.commits[0].message }}  
            Repository: ${{ github.repository }}  
-  
-           OpenWrt更新: https://github.com/${{ github.repository }}/releases/latest
+           Release Name: ${{ github.event.release.name }}  
+           OpenWrt更新: https://github.com/${{ github.repository }}/releases/tag/${{ github.event.release.tag_name }}
+
