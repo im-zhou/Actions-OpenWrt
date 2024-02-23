@@ -179,3 +179,16 @@ jobs:
       with:
         retain_days: 1
         keep_minimum_runs: 3
+
+    - name: Send Telegram notification  
+      if: steps.tag.outputs.status == 'success' && !cancelled()  
+      uses: BashCoder/telegram-send-action@master  
+      with:  
+        to: -1001917136075  # 替换为你的Telegram聊天ID或用户名  
+        token: 7088187094:AAFtSYKr8gMnt7e1kCRUHxGfvLOMvtYt0cg  # 替换为你的Telegram Bot Token  
+        message: |  
+            New Release Notification!  
+            Repository: ${{ github.repository }}  
+            Release Tag: ${{ github.ref }}  
+            Created by: ${{ github.actor }}  
+            基于Lede的OpenWrt更新: https://github.com/${{ github.repository }}/releases/tag/${{ github.ref }}
