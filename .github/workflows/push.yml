@@ -4,7 +4,7 @@ name: Telegram Notification Push
 # 要在什麼時候觸發，實測只設定 push 沒有限定更細的 type 或條件時，
 # 新增 tag、設定 release 等活動都會觸發
 on:  
-  create:  
+  push:  
     tags:  
       - '*' # 监听所有新的release标签  
 
