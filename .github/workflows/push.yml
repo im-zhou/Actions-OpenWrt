@@ -32,5 +32,5 @@ jobs:
         message: |  
            Repository: ${{ github.repository }}  
            Release Name: ${{ github.event.release.name }}  
-           OpenWrt更新: https://github.com/${{ github.repository }}/releases/tag/${{ github.event.release.tag_name }}
+           基于Lede的OpenWrt纯净版更新: https://github.com/${{ github.repository }}/releases/tag/${{ github.event.release.tag_name }}
 
