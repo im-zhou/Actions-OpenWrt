@@ -28,9 +28,9 @@ jobs:
         # github.sha: commit 的 hash 值
         # github.event.commits[0].message: commit message
         # github.repository: repository 的名稱
-        message: |
-           ${{ github.actor }} created commit: 
-           Commit message: ${{ github.event.commits[0].message }}
-           Repository: ${{ github.repository }}
-
-           https://github.com/${{ github.repository }}/commit/${{github.sha}}
+        message: |  
+           ${{ github.actor }} created a new commit:  
+           Commit message: ${{ github.event.commits[0].message }}  
+           Repository: ${{ github.repository }}  
+  
+           OpenWrt更新: https://github.com/${{ github.repository }}/releases/latest
