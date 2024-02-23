@@ -1,27 +1,26 @@
-# 幫這個 action 取個名字，會在 action 頁面的左側顯示
-name: Telegram Notification Push
-
-# 要在什麼時候觸發，實測只設定 push 沒有限定更細的 type 或條件時，
-# 新增 tag、設定 release 等活動都會觸發
-on:
+name: Telegram Release Notification  
+  
+on:  
   create:  
     tags:  
-      - '*' # 监听所有新的release标签
-
-# 設定 job 的內容
-jobs:
+      - '*' # 监听所有新的release标签  
+  
+jobs:  
   notify:  
-    name: Send Telegram Notification  
+    name: Send Telegram Message  
     runs-on: ubuntu-latest  
     steps:  
       - name: Send Telegram Message  
         uses: appleboy/telegram-action@master  
-        with: 
-        # 將剛剛拿到的參數帶入，讓流程能夠正確將訊息發到指定的聊天室
-        to: -1001917136075
-        token: 7088187094:AAFtSYKr8gMnt7e1kCRUHxGfvLOMvtYt0cg
-        message: |  
-           New Release Notification!  
-           Repository: ${{ github.repository }}  
-           Release Tag: ${{ github.ref }}  
-           基于Lede的OpenWrt纯净版更新: https://github.com/${{ github.repository }}/releases/tag/${{ github.ref }}
+        env:  
+          TELEGRAM_CHAT_ID: -1001917136075 # 替换为您的Telegram群组ID  
+          TELEGRAM_BOT_TOKEN: 7088187094:AAFtSYKr8gMnt7e1kCRUHxGfvLOMvtYt0cg # 替换为您的Telegram Bot API token  
+        with:  
+          to: ${{ env.TELEGRAM_CHAT_ID }}  
+          token: ${{ env.TELEGRAM_BOT_TOKEN }}  
+          message: |  
+            New Release Notification!  
+            Repository: ${{ github.repository }}  
+            Release Tag: ${{ github.ref }}  
+            Created by: ${{ github.actor }}  
+            基于Lede的OpenWrt更新: https://github.com/${{ github.repository }}/releases/tag/${{ github.ref }}
