@@ -186,9 +186,7 @@ jobs:
       with:  
         to: -1001917136075  # 替换为你的Telegram聊天ID或用户名  
         token: 7088187094:AAFtSYKr8gMnt7e1kCRUHxGfvLOMvtYt0cg  # 替换为你的Telegram Bot Token  
-        message: |  
-            New Release Notification!  
-            Repository: ${{ github.repository }}  
-            Release Tag: ${{ github.ref }}  
-            Created by: ${{ github.actor }}  
-            基于Lede的OpenWrt更新: https://github.com/${{ github.repository }}/releases/tag/${{ github.ref }}
+        message: |
+            Repository: ${{ github.repository }}
+            Release Name: ${{ github.event.release.name }}
+            基于Lede的OpenWrt纯净版更新: https://github.com/${{ github.repository }}/releases/tag/${{ github.event.release.tag_name }}
