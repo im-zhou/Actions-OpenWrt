@@ -1,6 +1,6 @@
 # Actions-OpenWrt
 
-使用P3TERX/Actions-OpenWrt的模板对lean's lede源码进行编译
+使用[P3TERX/Actions-OpenWrt](https://github.com/P3TERX/Actions-OpenWrt)的模板对lean's lede源码进行编译
 
 ## 纯净版OpenWrt
 ![openwrt_1](https://github.com/LemonCrab666/Actions-OpenWrt/assets/55867630/157fdc4b-0f9f-4a68-b995-f2c9ef4914ad)
