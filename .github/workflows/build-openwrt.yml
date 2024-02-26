@@ -187,5 +187,5 @@ jobs:
         to: -1001917136075  # 替换为你的Telegram聊天ID或用户名  
         token: 7088187094:AAFtSYKr8gMnt7e1kCRUHxGfvLOMvtYt0cg  # 替换为你的Telegram Bot Token  
         message: |
-            基于Lede的X86 OpenWrt纯净版更新: https://github.com/LemonCrab666/Actions-OpenWrt/releases/latest
-            更新最新源码
+            基于Lede的X86 OpenWrt纯净版更新: https://github.com/LemonCrab666/Actions-OpenWrt/releases/tag/${{ steps.tag.outputs.release_tag }}
+            更新Lede最新源码
