@@ -180,6 +180,11 @@ jobs:
         retain_days: 1
         keep_minimum_runs: 3
 
+    - name: Get the latest commit message  
+      run: |  
+        COMMIT_MESSAGE=$(git log -1 --pretty=%B)  
+        echo "COMMIT_MESSAGE=${COMMIT_MESSAGE}" >> $GITHUB_ENV  
+
     - name: Send Telegram notification  
       if: steps.tag.outputs.status == 'success' && !cancelled()  
       uses: appleboy/telegram-action@master 
@@ -192,3 +197,7 @@ jobs:
         message: |
             基于Lean's Lede的X86 OpenWrt纯净版更新: https://github.com/LemonCrab666/Actions-OpenWrt/releases/tag/${{ steps.tag.outputs.release_tag }}
             更新Lean's Lede最新源码
+            ```diff  
+            ${{ env.COMMIT_MESSAGE }}  
+            ```  
+            请查看仓库以获取完整的更改日志。
