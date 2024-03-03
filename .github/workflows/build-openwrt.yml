@@ -182,8 +182,10 @@ jobs:
 
     - name: Get the latest commit message  
       run: |  
-        COMMIT_MESSAGE=$(git log -1 --pretty=%B)  
-        echo "COMMIT_MESSAGE=${COMMIT_MESSAGE}" >> $GITHUB_ENV  
+        LATEST_COMMIT=$(curl -s https://api.github.com/repos/coolsnowwolf/lede/commits | jq -r '.[0].commit.message')  
+        LATEST_COMMIT_URL=$(curl -s https://api.github.com/repos/coolsnowwolf/lede/commits | jq -r '.[0].html_url')  
+        echo "LATEST_COMMIT=${LATEST_COMMIT}" >> $GITHUB_ENV  
+        echo "LATEST_COMMIT_URL=${LATEST_COMMIT_URL}" >> $GITHUB_ENV  
 
     - name: Send Telegram notification  
       if: steps.tag.outputs.status == 'success' && !cancelled()  
@@ -199,4 +201,5 @@ jobs:
             https://github.com/LemonCrab666/Actions-OpenWrt/releases/tag/${{ steps.tag.outputs.release_tag }}
             更新日志：
             更新Lean's Lede最新源码
-            ${{ env.COMMIT_MESSAGE }} 
+            Commit: ${{ env.LATEST_COMMIT }}  
+            URL: ${{ env.LATEST_COMMIT_URL }}  
