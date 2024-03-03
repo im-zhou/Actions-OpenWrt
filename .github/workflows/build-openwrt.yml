@@ -199,7 +199,4 @@ jobs:
             https://github.com/LemonCrab666/Actions-OpenWrt/releases/tag/${{ steps.tag.outputs.release_tag }}
             更新日志：
             更新Lean's Lede最新源码
-            ```diff  
-            ${{ env.COMMIT_MESSAGE }}  
-            ```  
-            请查看仓库以获取完整的更改日志。
+            ${{ env.COMMIT_MESSAGE }} 
