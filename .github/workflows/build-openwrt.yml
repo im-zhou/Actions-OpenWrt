@@ -154,24 +154,23 @@ jobs:
         echo "::warning file=wetransfer.com::$(cat wetransfer.log | grep https)"
         echo "::set-output name=url::$(cat wetransfer.log | grep https | cut -f3 -d" ")"
 
-    - name: Get the latest commit message  
-      run: |  
-        LATEST_COMMIT=$(curl -s https://api.github.com/repos/coolsnowwolf/lede/commits/master | jq -r '.[0].commit.message')  
-        LATEST_COMMIT_URL=$(curl -s https://api.github.com/repos/coolsnowwolf/lede/commits/master | jq -r '.[0].html_url')  
-        echo "LATEST_COMMIT=${LATEST_COMMIT}" >> $GITHUB_ENV  
-        echo "LATEST_COMMIT_URL=${LATEST_COMMIT_URL}" >> $GITHUB_ENV  
-
     - name: Generate release tag
       id: tag
       if: env.UPLOAD_RELEASE == 'true' && !cancelled()
       run: |
         echo "::set-output name=release_tag::$(date +"%Y.%m.%d-%H%M")"
         touch release.txt
-        echo "更新Lean's Lede最新源码" >> release.txt  
-        echo "LATEST_COMMIT=${LATEST_COMMIT} LATEST_COMMIT_URL=${LATEST_COMMIT_URL}" >> release.txt  
         [ $UPLOAD_COWTRANSFER = true ] && echo "🔗 [Cowtransfer](${{ steps.cowtransfer.outputs.url }})" >> release.txt
         [ $UPLOAD_WETRANSFER = true ] && echo "🔗 [WeTransfer](${{ steps.wetransfer.outputs.url }})" >> release.txt
-        echo "::set-output name=status::success"
+        - name: Get latest commits from coolsnowwolf/lede master branch 
+          id: get-commits
+          run: |  
+           COMMITS=$(curl -s https://api.github.com/repos/coolsnowwolf/lede/commits?per_page=1 | jq -r '.[0].commit.message') 
+           echo "::set-output name=commits::$COMMITS" 
+           echo "$COMMITS" >> release.txt  
+          env:  
+           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
+        echo "::set-output name=status::success" 
 
     - name: Upload firmware to release
       uses: softprops/action-gh-release@v1
@@ -188,6 +187,13 @@ jobs:
       with:
         retain_days: 1
         keep_minimum_runs: 3
+
+    - name: Get the latest commit message  
+      run: |  
+        LATEST_COMMIT=$(curl -s https://api.github.com/repos/coolsnowwolf/lede/commits | jq -r '.[0].commit.message')  
+        LATEST_COMMIT_URL=$(curl -s https://api.github.com/repos/coolsnowwolf/lede/commits | jq -r '.[0].html_url')  
+        echo "LATEST_COMMIT=${LATEST_COMMIT}" >> $GITHUB_ENV  
+        echo "LATEST_COMMIT_URL=${LATEST_COMMIT_URL}" >> $GITHUB_ENV  
 
     - name: Send Telegram notification  
       if: steps.tag.outputs.status == 'success' && !cancelled()  
