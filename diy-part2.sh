@@ -18,6 +18,8 @@ sed -i 's|^src-git luci https://github.com/coolsnowwolf/luci|#src-git luci https
 sed -i 's|^#src-git luci https://github.com/coolsnowwolf/luci.git;openwrt-23.05|src-git luci https://github.com/coolsnowwolf/luci.git;openwrt-23.05|' feeds.conf.default
 
 #替换argon主题
+git clone https://github.com/jerrykuku/luci-theme-argon.git feeds/luci/themes/luci-theme-argon
+git clone https://github.com/jerrykuku/luci-app-argon-config.git feeds/luci/applications/luci-app-argon-config
 #rm -rf feeds/luci/themes/luci-theme-argon
 #rm -rf feeds/luci/themes/luci-theme-design
 #git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git feeds/luci/themes/luci-theme-argon
@@ -32,6 +34,9 @@ git clone -b master --single-branch --filter=blob:none https://github.com/vernes
 
 #拉取adguardhome
 git clone https://github.com/rufengsuixing/luci-app-adguardhome package/luci-app-adguardhome
+
+#拉取serverchan
+git clone https://github.com/schen39/luci-app-serverchan package/luci-app-serverchan
 
 #设置默认主题
 #sed -i "s/luci-theme-bootstrap/luci-theme-argon/g" feeds/luci/collections/luci/Makefile
