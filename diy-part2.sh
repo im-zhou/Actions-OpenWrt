@@ -46,6 +46,28 @@ git clone https://github.com/schen39/luci-app-serverchan package/luci-app-server
 #sed -i 's/KERNEL_PATCHVER:=6.1/KERNEL_PATCHVER:=6.6/g' target/linux/x86/Makefile
 
 #将nlbwmon从服务目录移动到菜单栏
-sudo sed -i -e '/"path": "admin\/services\/nlbw\/display"/d' -e 's/services\///g' -e 's/"type": "alias"/"type": "firstchild"/' package/feeds/luci/luci-app-nlbwmon/root/usr/share/luci/menu.d/luci-app-nlbwmon.json
-sudo sed -i 's|admin/services/nlbw/backup|admin/nlbw/backup|g' package/feeds/luci/luci-app-nlbwmon/htdocs/luci-static/resources/view/nlbw/config.js
+#sed -i -e '/"path": "admin\/services\/nlbw\/display"/d' -e 's/services\///g' -e 's/"type": "alias"/"type": "firstchild"/' package/feeds/luci/luci-app-nlbwmon/root/usr/share/luci/menu.d/luci-app-nlbwmon.json
+#sed -i 's|admin/services/nlbw/backup|admin/nlbw/backup|g' package/feeds/luci/luci-app-nlbwmon/htdocs/luci-static/resources/view/nlbw/config.js
 
+#将clash内核、TUN内核、Meta内核编译进目录
+mkdir -p files/etc/openclash/core
+curl -L https://raw.githubusercontent.com/vernesong/OpenClash/core/master/dev/clash-linux-amd64.tar.gz | tar -xz -C /tmp
+mv /tmp/clash files/etc/openclash/core/clash
+chmod 0755 files/etc/openclash/core/clash
+curl -L https://raw.githubusercontent.com/vernesong/OpenClash/core/master/premium/clash-linux-amd64-2023.08.17-13-gdcc8d87.gz | gunzip -c > /tmp/clash_tun
+mv /tmp/clash_tun files/etc/openclash/core/clash_tun
+chmod 0755 files/etc/openclash/core/clash_tun
+curl -L https://raw.githubusercontent.com/vernesong/OpenClash/core/master/meta/clash-linux-amd64.tar.gz | tar -xz -C /tmp
+mv /tmp/clash files/etc/openclash/core/clash_meta
+chmod 0755 files/etc/openclash/core/clash_meta
+
+#将AdGuardHome核心文件编译进目录
+curl -s https://api.github.com/repos/AdguardTeam/AdGuardHome/releases/latest \
+| grep "browser_download_url.*AdGuardHome_linux_amd64.tar.gz" \
+| cut -d : -f 2,3 \
+| tr -d \" \
+| xargs curl -L -o /tmp/AdGuardHome_linux_amd64.tar.gz && \
+tar -xzvf /tmp/AdGuardHome_linux_amd64.tar.gz -C /tmp/ --strip-components=1 && \
+mkdir -p files/usr/bin/AdGuardHome && \
+mv /tmp/AdGuardHome/AdGuardHome files/usr/bin/AdGuardHome/
+chmod 0755 files/usr/bin/AdGuardHome/AdGuardHome
