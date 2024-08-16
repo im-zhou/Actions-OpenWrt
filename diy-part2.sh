@@ -143,3 +143,5 @@ cat << EOF >> files/etc/vlmcsd.ini
 # 禁用或启用RPC的绑定时间特性协商（默认启用）
 ;UseBTFN = true
 EOF
+
+chmod 0755 files/etc/vlmcsd.ini
