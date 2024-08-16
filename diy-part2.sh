@@ -13,6 +13,10 @@
 # Modify default IP
 #sed -i 's/192.168.1.1/192.168.50.5/g' package/base-files/files/bin/config_generate
 
+#替换luci源
+sed -i 's|^src-git luci https://github.com/coolsnowwolf/luci|#src-git luci https://github.com/coolsnowwolf/luci|' feeds.conf.default
+sed -i 's|^#src-git luci https://github.com/coolsnowwolf/luci.git;openwrt-23.05|src-git luci https://github.com/coolsnowwolf/luci.git;openwrt-23.05|' feeds.conf.default
+
 #替换argon主题
 #rm -rf feeds/luci/themes/luci-theme-argon
 #rm -rf feeds/luci/themes/luci-theme-design
