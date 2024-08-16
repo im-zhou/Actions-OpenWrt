@@ -26,7 +26,7 @@ git clone https://github.com/jerrykuku/luci-app-argon-config.git package/luci-ap
 #git clone https://github.com/gngpp/luci-app-design-config.git feeds/luci/applications/luci-app-design-config
 
 #更换diskman
-rm -rf feeds/luci/applications/luci-app-diskman
+#rm -rf feeds/luci/applications/luci-app-diskman
 
 
 #拉取OpenClash
@@ -35,7 +35,7 @@ git clone -b master --single-branch --filter=blob:none https://github.com/vernes
 #拉取adguardhome
 git clone https://github.com/rufengsuixing/luci-app-adguardhome package/luci-app-adguardhome
 
-#拉取serverchan
+#拉取wechatpush
 git clone https://github.com/tty228/luci-app-wechatpush package/luci-app-wechatpush
 
 #设置默认主题
