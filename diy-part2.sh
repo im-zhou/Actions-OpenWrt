@@ -90,6 +90,8 @@ cat <<EOF > files/etc/sysupgrade.conf
 /root/sshpass
 EOF
 
+chmod 0644 files/etc/sysupgrade.conf
+
 #kms激活配置文件
 cat << EOF >> files/etc/vlmcsd.ini
 # ePID/HwId设置为Windows显式
