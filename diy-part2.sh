@@ -38,6 +38,9 @@ git clone https://github.com/rufengsuixing/luci-app-adguardhome package/luci-app
 #拉取wechatpush
 git clone https://github.com/tty228/luci-app-wechatpush package/luci-app-wechatpush
 
+#拉取wrtbwmon
+git clone https://github.com/brvphoenix/wrtbwmon.git package/wrtbwmon
+
 #设置默认主题
 #sed -i "s/luci-theme-bootstrap/luci-theme-argon/g" feeds/luci/collections/luci/Makefile
 #sed -i "s/luci-theme-bootstrap/luci-theme-design/g" feeds/luci/collections/luci/Makefile
