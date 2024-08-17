@@ -75,6 +75,21 @@ mkdir -p files/usr/bin/AdGuardHome && \
 mv /tmp/AdGuardHome/AdGuardHome files/usr/bin/AdGuardHome/
 chmod 0755 files/usr/bin/AdGuardHome/AdGuardHome
 
+#修改sysguarde备份列表
+cat <<EOF > files/etc/sysupgrade.conf
+## This file contains files and directories that should
+## be preserved during an upgrade.
+
+# /etc/example.conf
+# /etc/openvpn/
+/etc/AdGuardHome.yaml
+/usr/bin/AdGuardHome/
+/www/luci-static/argon/background/
+/usr/share/wechatpush/api/OpenWrt.jpg
+/root/backup_openwrt.sh
+/root/sshpass
+EOF
+
 #kms激活配置文件
 cat << EOF >> files/etc/vlmcsd.ini
 # ePID/HwId设置为Windows显式
