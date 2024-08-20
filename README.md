@@ -3,6 +3,7 @@
 使用[P3TERX/Actions-OpenWrt](https://github.com/P3TERX/Actions-OpenWrt)的模板对lean's lede源码进行编译
 
 ## 纯净版X86_64 OpenWrt
+默认ip地址：http://192.168.1.1 用户名：root 密码：password
 已包含插件wireguard、ttyd终端、上网时间控制、openclash、全能推送、动态dns、网络唤醒、upnp、openvpn服务器、带宽监控
 ![openwrt_1](https://github.com/LemonCrab666/Actions-OpenWrt/assets/55867630/157fdc4b-0f9f-4a68-b995-f2c9ef4914ad)
 ![openwrt_2](https://github.com/LemonCrab666/Actions-OpenWrt/assets/55867630/a5b0ff96-ee52-495b-bf6c-89129130a959)
