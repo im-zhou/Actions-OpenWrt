@@ -16,9 +16,9 @@ env:
   REPO_BRANCH: master
 
 on:
-  #workflow_dispatch:
-#  schedule:
-#    - cron: "0 12 * * 5"
+  workflow_dispatch:
+  schedule:
+    - cron: "0 12 * * 5"
 
 jobs:
   check:
